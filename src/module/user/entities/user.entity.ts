@@ -6,10 +6,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
+  OneToMany,
 } from 'typeorm';
 import { IsEmail, MinLength, MaxLength } from 'class-validator';
 import environmentConfig from '../../../config';
 import { UserRole } from '../role.enum';
+import { Post } from '../../post/entities/post.entity';
 
 @Entity()
 export class User {
@@ -40,6 +42,10 @@ export class User {
     default: null,
   })
   profile: string;
+
+  @OneToMany(() => Post, (post) => post.user, { eager: true })
+  // @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 
   @Column({ default: false })
   isDeleted: boolean;

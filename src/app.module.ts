@@ -6,6 +6,7 @@ import { AppResolver } from './app.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import environmentConfig from './config';
 import { UserModule } from './module/user/user.module';
+import { PostModule } from './module/post/post.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UserModule } from './module/user/user.module';
       synchronize: true,
     }),
     UserModule,
+    PostModule,
   ],
   controllers: [],
   providers: [AppResolver],

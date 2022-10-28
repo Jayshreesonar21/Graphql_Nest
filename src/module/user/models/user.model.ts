@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Post } from '../../post/models/post.model';
 
 @ObjectType()
 export class User {
@@ -19,6 +20,9 @@ export class User {
 
   @Field({ nullable: true })
   profile?: string;
+
+  @Field((type) => [Post], { nullable: 'items' })
+  posts: Post[];
 
   @Field()
   isDeleted: boolean;
